@@ -1,0 +1,230 @@
+define定義一個常數,常數不用加$
+
+含入-->複製貼上
+
+  include_once("testDefine.php");
+  include_once("testDefine.php");
+
+
+require 較嚴謹－－如有錯誤，後續程式不會繼續執行
+include －－－－－如有錯誤，後續程式會繼續執行
+
+
+  //getdate()得到一個陣列;
+
+
+<?php
+  $x = 1 + "10";  // 11
+  //$x = "11" + 1;  // 12
+  //$x = 1 + "x10"; // 1＋０
+  //$x = 1 + "10x"; // 11
+  //$x = 1 + "11.5x";  // 12.5;
+  //$x = 1 + "x11.5";  // 1＋０;
+  
+  echo $x;
+?>
+
+$x = "ABC";
+$y = "BA";
+if ($x >= $y)
+	echo "$x >= $y";
+else
+	echo "$x < $y";
+
+echo "<hr>";
+// 字串逐個比較
+
+
+$x = "123";
+$y = "21";
+if ($x >= $y)
+	echo "$x >= $y";
+else
+	echo "$x < $y";
+
+echo "<hr>";
+// 純數字字串比較，會變成純數字比較
+
+
+<?php
+$a = 010;  // 8－－八進位
+$b = 0xA;  // 10－－十六進位
+$c = 2;    // 2
+print $a + $b + $c;
+?>
+
+
+<?php
+	$a = 10; $b = 1;
+	$a += $b;
+	// --->$a = $a+$b;
+	echo $a;
+?>
+
+
+<?php
+  $x = 1;
+  $y = $x++;
+  //$y = $x; $x++;
+  echo "x = $x, y = $y";
+  
+  echo "<br>";
+
+  $x = 1;
+  $y = ++$x;
+  //$x++; $y = $x;
+
+  echo "x = $x, y = $y";
+?>
+
+
+<?php
+	$a = 100;
+	$b = ($a > 0) ? "positive" : "negative";
+	//               true      : false   ;
+	echo $b;
+?>
+
+
+<?php
+  $x = 3;
+  if ($x >= 10 && foo())
+    echo "yes";
+  else
+    echo "no";
+    
+  echo "<hr>";
+  // &&而且，兩者都要符合，不然就不執行後面
+  // 此方法效率高，但後續有可能會有影響後續執行的程式的bug
+
+  $x = 3;
+  if ($x >= 10 & foo())
+    echo "yes";
+  else
+    echo "no";
+  // &而且，依舊會跑完全部程式，雖然效率較差，但是比較穩健
+function foo()
+{
+   echo "foo() is running.<br>";
+}
+?>
+
+
+@require("MyLibrary.php");
+    // @如果這行有錯誤，暫時局部關掉此行錯誤訊息
+
+
+unset($x);
+// 清除x的記憶體
+
+
+<?php
+$a = 20;
+//$c = 60;
+function myFunction($b) {
+	//echo "a = $a<br>";
+	$a = 30;
+	//echo "a = $a<br>";-->a=30
+	global $a, $c;
+	//echo "a = $a<br>";-->a=20
+	return $c = ($b + $a); // 40+20-->$C=60
+}
+// 請預測答案是多少?
+echo myFunction(40) + $c;
+?>
+
+
+function test100($i) {
+	return $i + 100;
+}
+// $x = 1;
+// echo test($x);---->2
+$x = 2;
+$p = "test10";
+// $p = "test100";
+// 呼叫字串所說的function
+echo $p($x);
+// -->2+10=12
+// -->2+100=102
+
+
+$a = array(
+    0.1 => 'A', 
+    0.9 => 'B', 
+    // A和B都是0,故B會蓋掉A
+    '1.1' => 'C');
+var_dump($a);
+
+
+$myArray = array(
+        'myName'    =>'Jeremy', 
+        'myHeight'  =>191, 
+        'myWeight'  =>91);
+        // =>箭頭指向
+    echo "大家好，我的名字叫".$myArray['myName']
+    // echo "大家好，我的名字叫".$myArray[0]
+    // 此陣列沒有編號故陣列[0]找不到值
+
+
+$season = array('春', '夏', '秋', '冬'); 
+
+echo "每年的四季分別為：<br>";
+foreach ($season as $value){
+	// 集合項(陣列)處理每一個單項(變數)
+	echo $value,"<br>";
+}
+
+
+$testArray = array("A1", "A2", "A18");
+	sort($testArray);
+	// 字串排法
+	var_dump($testArray);
+	// A1->A18->A2
+	echo "<br />";
+	
+	natsort($testArray);
+	// 自然排序法
+	// A1->A2->A18
+	var_dump($testArray);
+
+
+    function cmp($a, $b)
+{
+    // return $b - $a;
+    // 反轉6,5,3,2,1
+
+    // return $a - $b;
+    //1,2,3,5,6
+
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+    //1,2,3,5,6
+}
+
+$a = array(3, 2, 5, 6, 1);
+usort($a, "cmp");
+// 語言特性，字串變數可以呼叫function
+foreach ($a as $key => $value) {
+    echo "$key: $value <br />";
+    // 快速排序法
+}
+
+
+
+function __construct() {
+		foreach ( get_class_vars ( "CAnimal" ) as $varName => $varValue ) {
+			// 得到類別所有資料
+			// 建構式去掉了重量的資料
+			if (substr ( $varName, 0, 1 ) != "_")
+				unset ( $this->$varName );
+				//unset清掉記憶體
+				// $a申請一塊記憶體
+				// isset確認記憶體是否存在
+		}
+
+
+index 首頁
+login 登入頁
+secret 會員頁
