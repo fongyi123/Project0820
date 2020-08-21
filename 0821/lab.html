@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="echo.php">
+        China Airline flight number:
+        <input type="text" name="text" pattern="\w+([.-]\w+)*@\w+([.-]\w+)+" required> <br> <input type="submit" name="btnOK" id="btnOK" value="OK">
+        <!-- pattern="\w+([.-]\w+)*@\w+" -->
+        <!-- pattern="\w+@\w+" -->
+        <!-- pattern="CI-\d{3}" -->
+        <!-- pattern="[A-Z][12]\d{8}" -->
+        <!-- pattern="0\d-\d{8}"  電話-->
+        <!-- pattern="\(0\d)\d{7,8}"  電話-->
+        <!-- pattern="(0\d-)?\d{8}"  電話-->
+        <!-- pattern="(0\d-)?\d{7,8}"  電話7~8碼-->
+        <!-- [A-Z][12]/d{7} -->
+        <!-- required 必要欄位 -->
+        <!-- 箭頭->表示開始，$表示結束 -->
+        <!-- ta-chih chien -->
+        <!-- 0810/Demo/jscoding.pdf -->
+        </form>
+    
+</body>
+</html>
